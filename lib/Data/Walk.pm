@@ -91,7 +91,7 @@ sub __recurse {
     my $ref = ref $item;
 
     if ($ref) {
-	my $blessed = -1 != index $ref, '=';
+	my $blessed = -1 != index $item, '=';
 
 	# Avoid fancy overloading stuff.
 	bless $item if $blessed;
