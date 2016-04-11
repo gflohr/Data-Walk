@@ -1,4 +1,4 @@
-#! /usr/local/bin/perl -w # -*- perl -*-
+#! /usr/bin/env perl # -*- perl -*-
 
 # Makefile generator for Data-Find.
 # Copyright (C) 2005-2016 Guido Flohr <guido.flohr@cantanea.com>, 
@@ -30,7 +30,9 @@ WriteMakefile (
 	 	 AUTHOR		=> 'Guido Flohr <guido.flohr@cantanea.com>',
     ) : (),
     ),
-    PREREQ_PM => {},
+    PREREQ_PM => {
+        'Scalar::Util' => 1.38,
+    },
     PL_FILES => {},
     (MM->can ('signature_target') ? (SIGN => 1) : ()),
     LICENSE => 'lgpl',

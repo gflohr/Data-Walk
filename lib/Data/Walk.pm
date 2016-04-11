@@ -24,6 +24,8 @@ package Data::Walk;
 use strict;
 use 5.004;
 
+use Scalar::Util;
+
 require Exporter;
 
 use vars qw ($VERSION @ISA @EXPORT);
@@ -91,7 +93,7 @@ sub __recurse {
     my $ref = ref $item;
 
     if ($ref) {
-	my $blessed = -1 != index $item, '=';
+	my $blessed = Scalar::Util::blessed($item);
 
 	# Avoid fancy overloading stuff.
 	bless $item if $blessed;
@@ -133,6 +135,9 @@ sub __recurse {
 		@children = 'HASH' eq $data_type ? %{$item} : @{$item};
 	    }
 	}
+
+        # Recover original object state.
+        bless $item, $ref if $blessed;
     }
 
     local $_;
