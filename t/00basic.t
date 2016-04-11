@@ -42,7 +42,7 @@ ok $item, $data;
 $data = [ (0 .. 4) ];
 $count = 0;
 $wanted = sub {
-    ok $Data::Walk::type, 'ARRAY' unless ref $_;
+    ok($Data::Walk::type, 'ARRAY') unless ref $_;
     ++$count;
 };
 walk $wanted, $data;
@@ -52,7 +52,7 @@ ok $count, 1 + @{$data};
 $data = { map { $_ => $_ } @hashdata };
 $count = 0;
 $wanted = sub {
-    ok $Data::Walk::type, 'HASH' unless ref $_;
+    ok($Data::Walk::type, 'HASH')unless ref $_;
     ++$count;
 };
 walk $wanted, $data;
@@ -73,7 +73,7 @@ $data = [ (0 .. 4) ];
 bless $data;
 $count = 0;
 $wanted = sub {
-    ok $Data::Walk::type, 'ARRAY' unless ref $_;
+    ok($Data::Walk::type, 'ARRAY') unless ref $_;
     ++$count;
 };
 walk $wanted, $data;
@@ -85,7 +85,7 @@ bless $data;
 
 $count = 0;
 $wanted = sub {
-    ok $Data::Walk::type, 'HASH' unless ref $_;
+    ok($Data::Walk::type, 'HASH') unless ref $_;
     ++$count;
 };
 walk $wanted, $data;
