@@ -139,6 +139,8 @@ sub __recurse {
 	}
     }
 
+    local $_;
+
     unless ($options->{bydepth}) {
 	$_ = $item;
 	$options->{wanted}->($item);
