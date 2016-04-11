@@ -1,7 +1,5 @@
 #! /usr/local/bin/perl -w
 
-# $Id: Build.PL,v 1.3 2006/05/11 13:56:28 guido Exp $
-
 # Experimental build builder script for Data-Walk.
 # Copyright (C) 2005-2016 Guido Flohr <guido.flohr@cantanea.com>,
 # all rights reserved.
@@ -34,16 +32,3 @@ my $build = Module::Build->new
 );
 
 $build->create_build_script;
-
-#Local Variables:
-#mode: perl
-#perl-indent-level: 4
-#perl-continued-statement-offset: 4
-#perl-continued-brace-offset: 0
-#perl-brace-offset: -4
-#perl-brace-imaginary-offset: 0
-#perl-label-offset: -4
-#cperl-indent-level: 4
-#cperl-continued-statement-offset: 2
-#tab-width: 8
-#End:

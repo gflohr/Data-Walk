@@ -1,7 +1,5 @@
 #! /usr/local/bin/perl -w # -*- perl -*-
 
-# $Id: Makefile.PL,v 1.6 2006/05/11 13:56:28 guido Exp $
-
 # Makefile generator for Data-Find.
 # Copyright (C) 2005-2016 Guido Flohr <guido.flohr@cantanea.com>, 
 # all rights reserved.
@@ -48,18 +46,3 @@ ReleaseNotes: NEWS
 	cat NEWS >$@
 	);
 }
-
-__END__
-
-Local Variables:
-mode: perl
-perl-indent-level: 4
-perl-continued-statement-offset: 4
-perl-continued-brace-offset: 0
-perl-brace-offset: -4
-perl-brace-imaginary-offset: 0
-perl-label-offset: -4
-cperl-indent-level: 4
-cperl-continued-statement-offset: 2
-tab-width: 8
-End:

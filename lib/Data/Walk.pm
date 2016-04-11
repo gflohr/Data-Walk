@@ -1,7 +1,5 @@
 #! /bin/false
 
-# $Id: Walk.pm,v 1.15 2006/05/11 14:10:54 guido Exp $
-
 # Traverse Perl data structures.
 # Copyright (C) 2005-2016 Guido Flohr <guido.flohr@cantanea.com>,
 # all rights reserved.
