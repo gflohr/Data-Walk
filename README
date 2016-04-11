@@ -10,4 +10,8 @@ Data::Dumper also offers some callbacks when traversing the structures,
 but not the ones that I needed.  That was motivation enough for writing
 Data::Walk.
 
+You can checkout the latest version from git:
+
+    git clone git://git.guido-flohr.net/perl/Data-Walk.git
+
 Guido Flohr
