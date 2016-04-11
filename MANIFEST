@@ -8,16 +8,12 @@ META.yml                        META.yml
 NEWS				Release notes
 README				ASCII manpage
 ReleaseNotes			Release notes
-t/TC_Basic.pm			Basic test case
-t/TC_Bugs.pm			Test for previous bugs
-t/TC_ByDepth.pm			Option 'bydepth'
-t/TC_Copy.pm			Option 'copy'
-t/TC_Examples.pm                Test cases for example code
-t/TC_Follow.pm			Option 'follow'
-t/TC_PostProcess.pm		Options 'postprocess' and 'postprocess_hash'
-t/TC_PreProcess.pm		Option 'preprocess'
-t/testrunner.t			Test::Harness style unit tester
-t/TS_All.pm			Test suite
-t/TS_Basic.pm			Test basic functionality
-t/TS_Options.pm			Test various options
-SIGNATURE                                Public-key signature (added by MakeMaker)
+t/00basic.t			Basic test case
+t/01by_depth.t			Option 'bydepth'
+t/01copy.t			Option 'copy'
+t/01follow.t                    Option 'follow'
+t/01post_process.pm             Options 'postprocess' and 'postprocess_hash'
+t/01pre_process.pm		Option 'preprocess'
+t/02bugs-1.t			Test for old bugs
+t/02examples.t                  Test cases for example code
+SIGNATURE                       Public-key signature (added by MakeMaker)
