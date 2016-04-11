@@ -1,0 +1,12 @@
+--- #YAML:1.0
+name:                Data-Walk
+version:             1.00
+abstract:            Traverse Perl data structures.
+license:             lgpl
+generated_by:        ExtUtils::MakeMaker version 6.30_01
+author:              Guido Flohr <guido@imperia.net>
+distribution_type:   module
+requires:     
+meta-spec:
+    url: <http://module-build.sourceforge.net/META-spec-new.html>;
+    version: 1.1

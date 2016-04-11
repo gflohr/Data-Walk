@@ -1,0 +1,13 @@
+Version 1.00 - 11 May 2006
+
+* The API is now considered stable.
+* New global variable $Data::Walk::depth.
+* Section "EXAMPLES" with some recipies in the pod Data::Walk(3).
+
+Version 0.02 - 06 Dec 2005
+
+* Renamed from Data::Traverse to Data::Walk.
+
+Version 0.01 - 15 Nov 2005
+
+* First version.
