@@ -109,32 +109,30 @@ sub __recurse {
 		$data_type = '';
 	}
 	
-	if ($data_type eq 'HASH' || $data_type eq 'ARRAY') {
-	    if (('ARRAY' eq $data_type || 'HASH' eq $data_type)) {
-		if ('ARRAY' eq $data_type) {
-		    @children = @{$item};
+	if ('ARRAY' eq $data_type || 'HASH' eq $data_type) {
+   	    if ('ARRAY' eq $data_type) {
+	        @children = @{$item};
+	    } else {
+	        @children = %{$item};
+	    }
+		
+	    if ($options->{copy}) {
+	        if ('ARRAY' eq $data_type) {
+	   	    @children = $options->{preprocess} (@{$item}) 
+		        if $options->{preprocess};
 		} else {
 		    @children = %{$item};
-		}
-		
-		if ($options->{copy}) {
-		    if ('ARRAY' eq $data_type) {
-			@children = $options->{preprocess} (@{$item}) 
-			    if $options->{preprocess};
-		    } else {
-			@children = %{$item};
-			@children = $options->{preprocess} (@children) 
-			    if $options->{preprocess};
-			@children = $options->{preprocess_hash} (@children) 
-			    if $options->{preprocess_hash};
-		    }
-		} else {
-		    $item = $options->{preprocess} ($item) 
+		    @children = $options->{preprocess} (@children) 
 			if $options->{preprocess};
-		    $item = $options->{preprocess_hash} ($item) 
-			if 'HASH' eq $data_type && $options->{preprocess_hash};
-		    @children = 'HASH' eq $data_type ? %{$item} : @{$item};
+		    @children = $options->{preprocess_hash} (@children) 
+			if $options->{preprocess_hash};
 		}
+ 	    } else {
+	        $item = $options->{preprocess} ($item) 
+                    if $options->{preprocess};
+		$item = $options->{preprocess_hash} ($item) 
+		    if 'HASH' eq $data_type && $options->{preprocess_hash};
+		@children = 'HASH' eq $data_type ? %{$item} : @{$item};
 	    }
 	}
     }
