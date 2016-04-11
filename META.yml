@@ -4,7 +4,7 @@ version:             1.00
 abstract:            Traverse Perl data structures.
 license:             lgpl
 generated_by:        ExtUtils::MakeMaker version 6.30_01
-author:              Guido Flohr <guido@imperia.net>
+author:              Guido Flohr <guido.flohr@cantanea.com>
 distribution_type:   module
 requires:     
 meta-spec:

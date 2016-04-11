@@ -1,5 +1,5 @@
 # Data::Walk - Traverse Perl data structures.
-# Copyright (C) 2005-2006 Guido Flohr <guido@imperia.net>,
+# Copyright (C) 2005-2016 Guido Flohr <guido.flohr@cantanea.com>,
 # all rights reserved.
 
 # This program is free software; you can redistribute it and/or modify it

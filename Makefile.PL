@@ -3,7 +3,7 @@
 # $Id: Makefile.PL,v 1.6 2006/05/11 13:56:28 guido Exp $
 
 # Makefile generator for Data-Find.
-# Copyright (C) 2005-2006 Guido Flohr <guido@imperia.net>, 
+# Copyright (C) 2005-2016 Guido Flohr <guido.flohr@cantanea.com>, 
 # all rights reserved.
 
 # This program is free software; you can redistribute it and/or modify it
@@ -29,7 +29,7 @@ WriteMakefile (
     VERSION_FROM	=> 'lib/Data/Walk.pm',
     ($] >= 5.005 ?
 		(ABSTRACT	=> 'Traverse Perl data structures.',
-	 	 AUTHOR		=> 'Guido Flohr <guido@imperia.net>',
+	 	 AUTHOR		=> 'Guido Flohr <guido.flohr@cantanea.com>',
     ) : (),
     ),
     PREREQ_PM => {},

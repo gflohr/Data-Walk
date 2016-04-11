@@ -3,7 +3,7 @@
 # $Id: Build.PL,v 1.3 2006/05/11 13:56:28 guido Exp $
 
 # Experimental build builder script for Data-Walk.
-# Copyright (C) 2005-2006 Guido Flohr <guido@imperia.net>,
+# Copyright (C) 2005-2016 Guido Flohr <guido.flohr@cantanea.com>,
 # all rights reserved.
 
 # This program is free software; you can redistribute it and/or modify it

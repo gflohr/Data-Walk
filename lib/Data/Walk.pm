@@ -3,7 +3,7 @@
 # $Id: Walk.pm,v 1.15 2006/05/11 14:10:54 guido Exp $
 
 # Traverse Perl data structures.
-# Copyright (C) 2005-2006 Guido Flohr <guido@imperia.net>,
+# Copyright (C) 2005-2016 Guido Flohr <guido.flohr@cantanea.com>,
 # all rights reserved.
 
 # This program is free software; you can redistribute it and/or modify it
@@ -461,7 +461,7 @@ bug tracking system at http://rt.cpan.org/NoAuth/Bugs.html?Dist=Data-Walk.
 
 =head1 COPYING
 
-Copyright (C) 2005-2006, Guido Flohr E<lt>guido@imperia.netE<gt>, all
+Copyright (C) 2005-2006, Guido Flohr E<lt>guido.flohr@cantanea.comE<gt>, all
 rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
