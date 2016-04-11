@@ -73,6 +73,7 @@ $data = [ (0 .. 4) ];
 bless $data;
 $count = 0;
 $wanted = sub {
+    $DB::single = 1;
     ok($Data::Walk::type, 'ARRAY') unless ref $_;
     ++$count;
 };

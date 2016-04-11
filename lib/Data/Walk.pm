@@ -71,7 +71,20 @@ sub __walk {
     $options->{copy} = 1 unless exists $options->{copy};
 
     foreach my $item (@args) {
-    	local $depth;
+    	local ($container, $type, $depth);
+        if (ref $item) {
+            $container = $item;
+	    if (UNIVERSAL::isa ($item, 'HASH')) {
+		$type = 'HASH';
+	    } elsif (UNIVERSAL::isa ($item, 'ARRAY')) {
+		$type = 'ARRAY';
+	    } else {
+		$type = '';
+	    }
+        } else {
+            $container = \@args;
+            $type = 'ARRAY';
+        }
 	$depth = 0;
 	__recurse $options, $item;
     }
@@ -85,7 +98,7 @@ sub __recurse {
     ++$depth;
     
     my @children;
-    my $data_type;
+    my $data_type = '';
 
     local ($address, $seen);
     undef $address;
@@ -134,24 +147,26 @@ sub __recurse {
 		    if 'HASH' eq $data_type && $options->{preprocess_hash};
 		@children = 'HASH' eq $data_type ? %{$item} : @{$item};
 	    }
-	}
+	} else {
+            $data_type = '';
+        }
 
         # Recover original object state.
         bless $item, $ref if $blessed;
     }
 
     local $_;
-
+    
     unless ($options->{bydepth}) {
 	$_ = $item;
 	$options->{wanted}->($item);
     }
 
-    local ($container, $type);
-    $type = $data_type;
-    $container = $item;
-
     if ($options->{follow} || !$seen) {
+        local ($container, $type);
+        $type = $data_type;
+        $container = $item;
+
 	foreach my $child (@children) {
 	    __recurse $options, $child;
 	}
@@ -352,7 +367,8 @@ a hash or an array.  Think "directory" in terms of File::Find(3pm)!
 =item B<$Data::Walk::type>
 
 The base type of the object that $Data::Walk::container
-references.  This is either "ARRAY" or "HASH".
+references.  This is either "ARRAY" or "HASH" or the empty string for
+everything else.
 
 =item B<$Data::Walk::seen>
 

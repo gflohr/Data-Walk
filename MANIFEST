@@ -14,6 +14,7 @@ t/01copy.t			Option 'copy'
 t/01follow.t                    Option 'follow'
 t/01post_process.pm             Options 'postprocess' and 'postprocess_hash'
 t/01pre_process.pm		Option 'preprocess'
-t/02bugs-1.t			Test for old bugs
 t/02examples.t                  Test cases for example code
+t/03bugs-1.t			Test for old bugs
+t/04bug-container-type-by-depth.t Test that type and container are always set
 SIGNATURE                       Public-key signature (added by MakeMaker)
