@@ -13,7 +13,6 @@ SIGNATURE                       Public-key signature (added by MakeMaker)
 THANKS                          Credits
 t/00basic.t			Basic test case
 t/01by_depth.t			Option 'bydepth'
-t/01copy.t			Option 'copy'
 t/01follow.t                    Option 'follow'
 t/01post_process.t              Options 'postprocess' and 'postprocess_hash'
 t/01pre_process.t		Option 'preprocess'
