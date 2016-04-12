@@ -112,7 +112,7 @@ sub __recurse {
 
         # Avoid fancy overloading stuff.
         bless $item if $blessed;
-        $address = int $item;
+        $address = Scalar::Util::refaddr($item);
     
         $seen = $options->{seen}->{$address}++;
 
