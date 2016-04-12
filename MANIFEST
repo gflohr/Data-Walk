@@ -8,6 +8,8 @@ META.yml                        META.yml
 NEWS				Release notes
 README				ASCII manpage
 ReleaseNotes			Release notes
+SIGNATURE                       Public-key signature (added by MakeMaker)
+THANKS                          Credits
 t/00basic.t			Basic test case
 t/01by_depth.t			Option 'bydepth'
 t/01copy.t			Option 'copy'
@@ -18,4 +20,3 @@ t/01index.t                     Test $Data::Walk::index
 t/02examples.t                  Test cases for example code
 t/03bugs-1.t			Test for old bugs
 t/04bug-container-type-by-depth.t Test that type and container are always set
-SIGNATURE                       Public-key signature (added by MakeMaker)
