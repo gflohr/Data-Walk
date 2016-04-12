@@ -74,13 +74,15 @@ sub __walk {
     foreach my $item (@args) {
         local ($container, $type, $depth);
         if (ref $item) {
-            $container = $item;
             if (UNIVERSAL::isa ($item, 'HASH')) {
+                $container = $item;
                 $type = 'HASH';
             } elsif (UNIVERSAL::isa ($item, 'ARRAY')) {
+                $container = $item;
                 $type = 'ARRAY';
             } else {
-                $type = '';
+                $container = \@args;
+                $type = 'ARRAY';
             }
         } else {
             $container = \@args;
