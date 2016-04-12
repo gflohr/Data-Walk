@@ -12,8 +12,9 @@ t/00basic.t			Basic test case
 t/01by_depth.t			Option 'bydepth'
 t/01copy.t			Option 'copy'
 t/01follow.t                    Option 'follow'
-t/01post_process.pm             Options 'postprocess' and 'postprocess_hash'
-t/01pre_process.pm		Option 'preprocess'
+t/01post_process.t              Options 'postprocess' and 'postprocess_hash'
+t/01pre_process.t		Option 'preprocess'
+t/01index.t                     Test $Data::Walk::index
 t/02examples.t                  Test cases for example code
 t/03bugs-1.t			Test for old bugs
 t/04bug-container-type-by-depth.t Test that type and container are always set

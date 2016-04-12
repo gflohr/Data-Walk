@@ -30,11 +30,11 @@ require Exporter;
 
 use vars qw ($VERSION @ISA @EXPORT);
 
-$VERSION = '1.00';
+$VERSION = '1.01';
 @ISA = qw (Exporter);
 @EXPORT = qw (walk walkdepth);
 
-use vars qw ($container $type $seen $address $depth);
+use vars qw ($container $type $seen $address $depth $index);
 
 # Forward declarations.
 sub walk;
@@ -70,6 +70,7 @@ sub __walk {
     $options->{seen} = {};
     $options->{copy} = 1 unless exists $options->{copy};
 
+    local $index = 0;
     foreach my $item (@args) {
     	local ($container, $type, $depth);
         if (ref $item) {
@@ -87,6 +88,7 @@ sub __walk {
         }
 	$depth = 0;
 	__recurse $options, $item;
+        ++$index;
     }
     
     return 1;
@@ -163,12 +165,14 @@ sub __recurse {
     }
 
     if ($options->{follow} || !$seen) {
-        local ($container, $type);
+        local ($container, $type, $index);
         $type = $data_type;
         $container = $item;
+        $index = 0;
 
 	foreach my $child (@children) {
 	    __recurse $options, $child;
+            ++$index;
 	}
     }
 
@@ -386,6 +390,18 @@ references, the value is undefined.
 =item B<$Data::Walk::depth>
 
 The depth of the current recursion.
+
+=item B<$Data::Walk::index>
+
+Holds the index of the current item in the container.  Note that hashes
+and arrays are treated the same.  Therefore, if the current container is
+a hash and B<$Data::Walk::index> is even then B<$_> is a hash key.  If
+it is odd, then B<$_> is a hash value.
+
+Note that the root container is the array of items to search that you
+passed to the wanted function!
+
+This variable has been added in Data::Walk version 1.01.
 
 =back
 
