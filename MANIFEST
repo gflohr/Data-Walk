@@ -1,6 +1,7 @@
 Build.PL			Experimental build script
 ChangeLog			CVS log 
 COPYING.LESSER			GNU Library General Public License
+Credits                         Credits
 lib/Data/Walk.pm		Walk Perl data structures
 Makefile.PL			Makefile generator
 MANIFEST			This file

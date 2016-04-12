@@ -40,11 +40,14 @@ WriteMakefile (
 
 sub MY::postamble {
    	q ( 
-all :: ReleaseNotes
+all :: Credits ReleaseNotes
 
 # Make search.cpan.org happy but still follow GNU standards:
 # (Thanks to Graham Barr for the hint)
 ReleaseNotes: NEWS
 	cat NEWS >$@
+
+Credits: THANKS
+	cat THANKS >$@
 	);
 }
