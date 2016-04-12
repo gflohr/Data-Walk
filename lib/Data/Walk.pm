@@ -34,7 +34,7 @@ $VERSION = '1.01';
 @ISA = qw (Exporter);
 @EXPORT = qw (walk walkdepth);
 
-use vars qw ($container $type $seen $address $depth $index);
+use vars qw ($container $type $seen $address $depth $index $key);
 
 # Forward declarations.
 sub walk;
@@ -173,6 +173,11 @@ sub __recurse {
         $index = 0;
 
         foreach my $child (@children) {
+            if ($type eq 'HASH' && $index & 1) {
+                $key = $children[$index - 1];
+            } else {
+                undef $key;
+            }
             __recurse $options, $child;
             ++$index;
         }
@@ -184,6 +189,7 @@ sub __recurse {
     }
 
     if ($data_type) {
+        local ($container, $type, $index) = ($item, $data_type, -1);
         $options->{postprocess}->() if $options->{postprocess};
     }
 
