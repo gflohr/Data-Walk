@@ -127,8 +127,8 @@ sub __recurse {
         }
     
         if ('ARRAY' eq $data_type || 'HASH' eq $data_type) {
-           if ('ARRAY' eq $data_type) {
-               @children = @{$item};
+            if ('ARRAY' eq $data_type) {
+                @children = @{$item};
             } else {
                 @children = %{$item};
             }
@@ -138,7 +138,6 @@ sub __recurse {
                     @children = $options->{preprocess} (@{$item}) 
                             if $options->{preprocess};
                 } else {
-                    @children = %{$item};
                     @children = $options->{preprocess} (@children) 
                         if $options->{preprocess};
                     @children = $options->{preprocess_hash} (@children) 
@@ -166,7 +165,7 @@ sub __recurse {
         $options->{wanted}->($item);
     }
 
-    if ($options->{follow} || !$seen) {
+    if (@children && ($options->{follow} || !$seen)) {
         local ($container, $type, $index);
         $type = $data_type;
         $container = $item;
