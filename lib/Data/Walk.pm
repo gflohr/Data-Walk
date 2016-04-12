@@ -104,9 +104,7 @@ sub __recurse {
     my @children;
     my $data_type = '';
 
-    local ($address, $seen);
-    undef $address;
-    $seen = 0;
+    local ($container, $type, $address, $seen) = ($container, $type, undef, 0);
     my $ref = ref $item;
 
     if ($ref) {
@@ -127,6 +125,10 @@ sub __recurse {
         }
     
         if ('ARRAY' eq $data_type || 'HASH' eq $data_type) {
+            local $index = -1;
+            local $type = $data_type;
+            local $container = $item;
+
             if ('ARRAY' eq $data_type) {
                 @children = @{$item};
             } else {
@@ -138,6 +140,7 @@ sub __recurse {
                     @children = $options->{preprocess} (@{$item}) 
                             if $options->{preprocess};
                 } else {
+                    local $container = \@children;
                     @children = $options->{preprocess} (@children) 
                         if $options->{preprocess};
                     @children = $options->{preprocess_hash} (@children) 
@@ -158,10 +161,8 @@ sub __recurse {
         bless $item, $ref if $blessed;
     }
 
-    local $_;
-    
     unless ($options->{bydepth}) {
-        $_ = $item;
+        local $_ = $item;
         $options->{wanted}->($item);
     }
 
@@ -178,7 +179,7 @@ sub __recurse {
     }
 
     if ($options->{bydepth}) {
-        $_ = $item;
+        local $_ = $item;
         $options->{wanted}->($item);
     }
 
