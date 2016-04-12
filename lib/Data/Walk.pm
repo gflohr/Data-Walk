@@ -46,7 +46,7 @@ sub walk {
     my ($options, @args) = @_;
    
     unless (UNIVERSAL::isa($options, 'HASH')) {
-	$options = { wanted => $options };
+        $options = { wanted => $options };
     }
 
     __walk ($options, @args);
@@ -56,7 +56,7 @@ sub walkdepth {
     my ($options, @args) = @_;
 
     unless (UNIVERSAL::isa($options, 'HASH')) {
-	$options = { wanted => $options };
+        $options = { wanted => $options };
     }
 
     $options->{bydepth} = 1;
@@ -72,22 +72,22 @@ sub __walk {
 
     local $index = 0;
     foreach my $item (@args) {
-    	local ($container, $type, $depth);
+        local ($container, $type, $depth);
         if (ref $item) {
             $container = $item;
-	    if (UNIVERSAL::isa ($item, 'HASH')) {
-		$type = 'HASH';
-	    } elsif (UNIVERSAL::isa ($item, 'ARRAY')) {
-		$type = 'ARRAY';
-	    } else {
-		$type = '';
-	    }
+            if (UNIVERSAL::isa ($item, 'HASH')) {
+                $type = 'HASH';
+            } elsif (UNIVERSAL::isa ($item, 'ARRAY')) {
+                $type = 'ARRAY';
+            } else {
+                $type = '';
+            }
         } else {
             $container = \@args;
             $type = 'ARRAY';
         }
-	$depth = 0;
-	__recurse $options, $item;
+        $depth = 0;
+        __recurse $options, $item;
         ++$index;
     }
     
@@ -108,48 +108,48 @@ sub __recurse {
     my $ref = ref $item;
 
     if ($ref) {
-	my $blessed = Scalar::Util::blessed($item);
+        my $blessed = Scalar::Util::blessed($item);
 
-	# Avoid fancy overloading stuff.
-	bless $item if $blessed;
-	$address = int $item;
-	
-	$seen = $options->{seen}->{$address}++;
+        # Avoid fancy overloading stuff.
+        bless $item if $blessed;
+        $address = int $item;
+    
+        $seen = $options->{seen}->{$address}++;
 
-	if (UNIVERSAL::isa ($item, 'HASH')) {
-		$data_type = 'HASH';
-	} elsif (UNIVERSAL::isa ($item, 'ARRAY')) {
-		$data_type = 'ARRAY';
-	} else {
-		$data_type = '';
-	}
-	
-	if ('ARRAY' eq $data_type || 'HASH' eq $data_type) {
-   	    if ('ARRAY' eq $data_type) {
-	        @children = @{$item};
-	    } else {
-	        @children = %{$item};
-	    }
-		
-	    if ($options->{copy}) {
-	        if ('ARRAY' eq $data_type) {
-	   	    @children = $options->{preprocess} (@{$item}) 
-		        if $options->{preprocess};
-		} else {
-		    @children = %{$item};
-		    @children = $options->{preprocess} (@children) 
-			if $options->{preprocess};
-		    @children = $options->{preprocess_hash} (@children) 
-			if $options->{preprocess_hash};
-		}
- 	    } else {
-	        $item = $options->{preprocess} ($item) 
-                    if $options->{preprocess};
-		$item = $options->{preprocess_hash} ($item) 
-		    if 'HASH' eq $data_type && $options->{preprocess_hash};
-		@children = 'HASH' eq $data_type ? %{$item} : @{$item};
-	    }
-	} else {
+        if (UNIVERSAL::isa ($item, 'HASH')) {
+            $data_type = 'HASH';
+        } elsif (UNIVERSAL::isa ($item, 'ARRAY')) {
+            $data_type = 'ARRAY';
+        } else {
+            $data_type = '';
+        }
+    
+        if ('ARRAY' eq $data_type || 'HASH' eq $data_type) {
+           if ('ARRAY' eq $data_type) {
+               @children = @{$item};
+            } else {
+                @children = %{$item};
+            }
+        
+            if ($options->{copy}) {
+                if ('ARRAY' eq $data_type) {
+                    @children = $options->{preprocess} (@{$item}) 
+                            if $options->{preprocess};
+                } else {
+                    @children = %{$item};
+                    @children = $options->{preprocess} (@children) 
+                        if $options->{preprocess};
+                    @children = $options->{preprocess_hash} (@children) 
+                        if $options->{preprocess_hash};
+                }
+             } else {
+                $item = $options->{preprocess} ($item) 
+                        if $options->{preprocess};
+                $item = $options->{preprocess_hash} ($item) 
+                    if 'HASH' eq $data_type && $options->{preprocess_hash};
+                @children = 'HASH' eq $data_type ? %{$item} : @{$item};
+             }
+        } else {
             $data_type = '';
         }
 
@@ -160,8 +160,8 @@ sub __recurse {
     local $_;
     
     unless ($options->{bydepth}) {
-	$_ = $item;
-	$options->{wanted}->($item);
+        $_ = $item;
+        $options->{wanted}->($item);
     }
 
     if ($options->{follow} || !$seen) {
@@ -170,15 +170,15 @@ sub __recurse {
         $container = $item;
         $index = 0;
 
-	foreach my $child (@children) {
-	    __recurse $options, $child;
+        foreach my $child (@children) {
+            __recurse $options, $child;
             ++$index;
-	}
+        }
     }
 
     if ($options->{bydepth}) {
-	$_ = $item;
-	$options->{wanted}->($item);
+        $_ = $item;
+        $options->{wanted}->($item);
     }
 
     $options->{postprocess}->() if $options->{postprocess};
@@ -465,7 +465,7 @@ Following are some recipies for common tasks.
 =head2 Recursive Untainting
 
     sub untaint { 
-    	s/(.*)/$1/s unless ref $_;
+        s/(.*)/$1/s unless ref $_;
     };
     walk \&untaint, $data;
 
@@ -479,13 +479,13 @@ If you want to stop the recursion at a certain level, do it as follows:
     my $max_depth = 20;
     sub not_too_deep {
         if ($Data::Walk::depth > $max_depth) {
-	    return ();
+        return ();
         } else {
-	    return @_;
+        return @_;
         }
     }
     sub do_something1 {
-    	# Your code goes here.
+        # Your code goes here.
     }
     walk { wanted => \&do_something, preprocess => \&not_too_deep };
 
