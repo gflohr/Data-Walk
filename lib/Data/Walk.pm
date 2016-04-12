@@ -182,7 +182,9 @@ sub __recurse {
         $options->{wanted}->($item);
     }
 
-    $options->{postprocess}->() if $options->{postprocess};
+    if ($data_type) {
+        $options->{postprocess}->() if $options->{postprocess};
+    }
 
     --$depth;
     # void
