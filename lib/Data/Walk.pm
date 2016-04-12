@@ -30,7 +30,7 @@ require Exporter;
 
 use vars qw ($VERSION @ISA @EXPORT);
 
-$VERSION = '1.01';
+$VERSION = '2.00';
 @ISA = qw (Exporter);
 @EXPORT = qw (walk walkdepth);
 
