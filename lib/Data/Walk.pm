@@ -68,7 +68,6 @@ sub __walk {
     my ($options, @args) = @_;
 
     $options->{seen} = {};
-    $options->{copy} = 1 unless exists $options->{copy};
 
     local $index = 0;
     foreach my $item (@args) {
@@ -135,24 +134,16 @@ sub __recurse {
                 @children = %{$item};
             }
         
-            if ($options->{copy}) {
-                if ('ARRAY' eq $data_type) {
-                    @children = $options->{preprocess} (@{$item}) 
-                            if $options->{preprocess};
-                } else {
-                    local $container = \@children;
-                    @children = $options->{preprocess} (@children) 
+            if ('ARRAY' eq $data_type) {
+                @children = $options->{preprocess} (@{$item}) 
                         if $options->{preprocess};
-                    @children = $options->{preprocess_hash} (@children) 
+            } else {
+                local $container = \@children;
+                @children = $options->{preprocess} (@children) 
+                        if $options->{preprocess};
+                @children = $options->{preprocess_hash} (@children) 
                         if $options->{preprocess_hash};
-                }
-             } else {
-                $item = $options->{preprocess} ($item) 
-                        if $options->{preprocess};
-                $item = $options->{preprocess_hash} ($item) 
-                    if 'HASH' eq $data_type && $options->{preprocess_hash};
-                @children = 'HASH' eq $data_type ? %{$item} : @{$item};
-             }
+            }
         } else {
             $data_type = '';
         }
@@ -286,10 +277,9 @@ preprocessing function is called before the loop that calls the
 C<wanted()> function.  It is called with a list of member nodes
 and is expected to return such a list.  The list will contain
 all sub-nodes, regardless of the value of the option I<follow>!
-The list is normally a shallow copy of the data contained in the original
+The list is a shallow copy of the data contained in the original
 structure.  You can therefore safely delete items in it, without
-affecting the original data.  You can use the option I<copy>,
-if you want to change that behavior.
+affecting the original data.
 
 The behavior is identical for regular arrays and hashes, so you 
 probably want to coerce the list passed as an argument into a hash 
@@ -328,29 +318,6 @@ imply an infinite loop!
 Please note that the &wanted function is also called for nodes
 that have already been visited!  The effect of I<follow> is to
 suppress descending into subnodes.  
-
-=item B<copy>
-
-Normally, the &preprocess function is called with a shallow copy
-of the data.  If you set the option I<copy> to a false value,
-the &preprocess function is called with one single argument,
-a reference to the original data structure.  In that case, you
-also have to return a suitable reference.
-
-Using this option will result in a slight performance win, and
-can make it sometimes easier to manipulate the original data.
-
-What is a shallow copy?  Think of a list containing references
-to hashes:
-
-    my @list = ({ foo => 'bar' }, { foo => 'baz' });
-    my @shallow = @list;
-
-After this, @shallow will contain a new list, but the items
-stored in it are exactly identical to the ones stored in the
-original.  In other words, @shallow occupies new memory, whereas
-both lists contain references to the same memory for the list
-members.
 
 =back
 
@@ -463,24 +430,9 @@ I<follow_skip>, I<no_chdir>, I<untaint>, I<untaint_pattern>, and
 I<untaint_skip>.  To give truth the honor, all unrecognized options
 are skipped.
 
-You may argue, that the options I<untaint> and friends would be
-useful, too, allowing you to recursively untaint data structures.
-But, hey, that is what Data::Walk(3pm) is all about.  It makes
-it very easy for you to write that yourself.
-
 =head1 EXAMPLES
 
 Following are some recipies for common tasks.  
-
-=head2 Recursive Untainting
-
-    sub untaint { 
-        s/(.*)/$1/s unless ref $_;
-    };
-    walk \&untaint, $data;
-
-See perlsec(1), if you don't understand why the untaint() function
-untaints your data here.
 
 =head2 Recurse To Maximum Depth
 
