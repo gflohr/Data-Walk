@@ -45,7 +45,7 @@ sub __recurse;
 sub walk {
     my ($options, @args) = @_;
    
-    unless ('HASH' eq ref $options) {
+    unless (UNIVERSAL::isa($options, 'HASH')) {
 	$options = { wanted => $options };
     }
 
@@ -55,7 +55,7 @@ sub walk {
 sub walkdepth {
     my ($options, @args) = @_;
 
-    unless ('HASH' eq ref $options) {
+    unless (UNIVERSAL::isa($options, 'HASH')) {
 	$options = { wanted => $options };
     }
 
