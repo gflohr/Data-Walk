@@ -30,7 +30,7 @@ require Exporter;
 
 use vars qw ($VERSION @ISA @EXPORT);
 
-$VERSION = '2.00';
+$VERSION = '2.01';
 @ISA = qw (Exporter);
 @EXPORT = qw (walk walkdepth);
 
@@ -458,8 +458,8 @@ bug tracking system at http://rt.cpan.org/NoAuth/Bugs.html?Dist=Data-Walk.
 
 =head1 COPYING
 
-Copyright (C) 2005-2006, Guido Flohr E<lt>guido.flohr@cantanea.comE<gt>, all
-rights reserved.
+Copyright (C) 2005-2016 L<Guido Flohr|http://www.guido-flohr.net/>,
+L<mailto:guido.flohr@cantanea.com>, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU Library General Public License as published

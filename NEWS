@@ -1,4 +1,9 @@
-Version 2.00 - 12 Apr 2016
+Version 2.01 - 16 May 2016
+
+* Fixed copyright date.
+* Fixed contact information.
+
+Version 2.00 - 13 Apr 2016
 
 * All bugs from rt.cpan.org fixed.
 * Removed option 'copy' because it was mostly useless.
