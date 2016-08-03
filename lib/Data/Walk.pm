@@ -432,7 +432,7 @@ are skipped.
 
 =head1 EXAMPLES
 
-Following are some recipies for common tasks.  
+Following are some recipes for common tasks.  
 
 =head2 Recurse To Maximum Depth
 
