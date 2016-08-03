@@ -34,6 +34,7 @@ WriteMakefile (
         'Scalar::Util' => 1.38,
     },
     PL_FILES => {},
+    (MM->can ('signature_target') ? (SIGN => 1) : ()),
     LICENSE => 'lgpl',
 );
 
