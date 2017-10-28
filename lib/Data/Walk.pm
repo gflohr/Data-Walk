@@ -154,7 +154,7 @@ sub __recurse {
 
     unless ($options->{bydepth}) {
         local $_ = $item;
-        $options->{wanted}->($item);
+        $options->{wanted}->($item) if $options->{wanted};
     }
 
     if (@children && ($options->{follow} || !$seen)) {
