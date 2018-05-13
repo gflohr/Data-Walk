@@ -23,14 +23,36 @@ use Test;
 use Data::Walk;
 
 BEGIN {
-    plan tests => 10;
+    plan tests => 20;
 }
 
 my $data = {
     foo => 'bar',
     baz => 'bazoo',
 };
-walk sub {
-    ok $Data::Walk::type, 'HASH';
-    ok $Data::Walk::container, $data;
-}, $data;
+
+Data::Walk::walk +{
+       wanted      => sub {
+         if ($Data::Walk::depth == 1)  {
+           ok $Data::Walk::type, undef;
+           ok $Data::Walk::container, undef;
+         } elsif ($Data::Walk::depth == 2) {
+           ok $Data::Walk::type, 'HASH';
+           ok $Data::Walk::container, $data;
+         }
+       },
+       bydepth     => 1
+      }, $data;
+Data::Walk::walk +{
+       wanted      => sub {
+         if ($Data::Walk::depth == 1)  {
+           ok $Data::Walk::type, undef;
+           ok $Data::Walk::container, undef;
+         } elsif ($Data::Walk::depth == 2) {
+           ok $Data::Walk::type, 'HASH';
+           ok $Data::Walk::container, $data;
+         }
+       },
+       bydepth     => 0
+      }, $data;
+__END__
