@@ -31,28 +31,30 @@ my $data = {
     baz => 'bazoo',
 };
 
-Data::Walk::walk +{
-       wanted      => sub {
-         if ($Data::Walk::depth == 1)  {
-           ok $Data::Walk::type, undef;
-           ok $Data::Walk::container, undef;
-         } elsif ($Data::Walk::depth == 2) {
-           ok $Data::Walk::type, 'HASH';
-           ok $Data::Walk::container, $data;
-         }
-       },
-       bydepth     => 1
-      }, $data;
-Data::Walk::walk +{
-       wanted      => sub {
-         if ($Data::Walk::depth == 1)  {
-           ok $Data::Walk::type, undef;
-           ok $Data::Walk::container, undef;
-         } elsif ($Data::Walk::depth == 2) {
-           ok $Data::Walk::type, 'HASH';
-           ok $Data::Walk::container, $data;
-         }
-       },
-       bydepth     => 0
-      }, $data;
+Data::Walk::walk + {
+    wanted => sub {
+        if ( $Data::Walk::depth == 1 ) {
+            ok $Data::Walk::type,      undef;
+            ok $Data::Walk::container, undef;
+        }
+        elsif ( $Data::Walk::depth == 2 ) {
+            ok $Data::Walk::type,      'HASH';
+            ok $Data::Walk::container, $data;
+        }
+    },
+    bydepth => 1
+}, $data;
+Data::Walk::walk + {
+    wanted => sub {
+        if ( $Data::Walk::depth == 1 ) {
+            ok $Data::Walk::type,      undef;
+            ok $Data::Walk::container, undef;
+        }
+        elsif ( $Data::Walk::depth == 2 ) {
+            ok $Data::Walk::type,      'HASH';
+            ok $Data::Walk::container, $data;
+        }
+    },
+    bydepth => 0
+}, $data;
 __END__

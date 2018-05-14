@@ -31,53 +31,56 @@ my $hash = {
     baz => 'bazoo',
 };
 
-my $arr = [
-  "moo",
-  "foo",
-  1
-];
+my $arr = [ "moo", "foo", 1 ];
 
 walk sub {
-  if ($Data::Walk::depth == 1) {
-    #The top level has no container
-    ok $Data::Walk::type, undef;
-    #Hence no type for container
-    ok $Data::Walk::container, undef;
-  }
-  elsif ( $Data::Walk::depth == 2) {
-    ok $Data::Walk::type, q/HASH/;
-    ok $Data::Walk::container, $hash;
-  }
+    if ( $Data::Walk::depth == 1 ) {
+
+        #The top level has no container
+        ok $Data::Walk::type, undef;
+
+        #Hence no type for container
+        ok $Data::Walk::container, undef;
+    }
+    elsif ( $Data::Walk::depth == 2 ) {
+        ok $Data::Walk::type,      q/HASH/;
+        ok $Data::Walk::container, $hash;
+    }
 }, $hash;
 
-
 walk sub {
-  if ($Data::Walk::depth == 1) {
-    #The top level has no container
-    ok $Data::Walk::type, undef;
-    #Hence no type for container
-    ok $Data::Walk::container, undef;
-  }
-  elsif ( $Data::Walk::depth == 2) {
-    ok $Data::Walk::type, q/ARRAY/;
-    ok $Data::Walk::container, $arr;
-  }
+    if ( $Data::Walk::depth == 1 ) {
+
+        #The top level has no container
+        ok $Data::Walk::type, undef;
+
+        #Hence no type for container
+        ok $Data::Walk::container, undef;
+    }
+    elsif ( $Data::Walk::depth == 2 ) {
+        ok $Data::Walk::type,      q/ARRAY/;
+        ok $Data::Walk::container, $arr;
+    }
 }, $arr;
 
 walk sub {
-  if ($Data::Walk::depth == 1) {
-    #The top level has no container
-    ok $Data::Walk::type, undef;
-    #Hence no type for container
-    ok $Data::Walk::container, undef;
-  }
+    if ( $Data::Walk::depth == 1 ) {
+
+        #The top level has no container
+        ok $Data::Walk::type, undef;
+
+        #Hence no type for container
+        ok $Data::Walk::container, undef;
+    }
 }, $hash, $arr;
 
 walk sub {
-  if ($Data::Walk::depth == 1) {
-    #The top level has no container
-    ok $Data::Walk::type, undef;
-    #Hence no type for container
-    ok $Data::Walk::container, undef;
-  }
+    if ( $Data::Walk::depth == 1 ) {
+
+        #The top level has no container
+        ok $Data::Walk::type, undef;
+
+        #Hence no type for container
+        ok $Data::Walk::container, undef;
+    }
 }, 1, $hash, $arr;
