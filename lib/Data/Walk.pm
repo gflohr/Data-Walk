@@ -71,23 +71,7 @@ sub __walk {
 
     local $index = 0;
     foreach my $item (@args) {
-        local ($container, $type, $depth);
-        if (ref $item) {
-            if (UNIVERSAL::isa ($item, 'HASH')) {
-                $container = $item;
-                $type = 'HASH';
-            } elsif (UNIVERSAL::isa ($item, 'ARRAY')) {
-                $container = $item;
-                $type = 'ARRAY';
-            } else {
-                $container = \@args;
-                $type = 'ARRAY';
-            }
-        } else {
-            $container = \@args;
-            $type = 'ARRAY';
-        }
-        $depth = 0;
+        local $depth = 0;
         __recurse $options, $item;
         ++$index;
     }
